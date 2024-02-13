@@ -472,26 +472,33 @@
 
   const mynewarray = myApiData.map(function(value,index){
 
+    const indicator = value.Images.map(function(vindicator,indexindicator){
+
+      return ` <button type="button" data-bs-target="#demo${index}" data-bs-slide-to="${indexindicator}" class="active"></button>`
+    })
+
+    console.log(indicator);
+
+    const images =  value.Images.map(function(vimage,indeximage){
+
+      return ` <div class="carousel-item ${indeximage == 0? "active" : ""}">
+      <img src="${vimage}" alt="Chicago" class="d-block" style="width:100%">
+    </div>`
+    })
+
+    console.log(images);
+
     const display = `
     <div id="demo${index}" class="carousel slide" data-bs-ride="carousel">
     <!-- Indicators/dots -->
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#demo${index}" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#demo${index}" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#demo${index}" data-bs-slide-to="2"></button>
+     
+    ${indicator.join(" ")}
     </div>
     
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="${value.Images[0]}" alt="Los Angeles" class="d-block" style="width:100%">
-      </div>
-      <div class="carousel-item">
-        <img src="${value.Images[1]}" alt="Chicago" class="d-block" style="width:100%">
-      </div>
-      <div class="carousel-item">
-        <img src="${value.Images[2]}" alt="New York" class="d-block" style="width:100%">
-      </div>
+      ${images.join(" ")}
     </div>
     
     <!-- Left and right controls/icons -->
@@ -511,3 +518,4 @@
  
 
 document.getElementById("display").innerHTML =mynewarray.join(" ");
+
