@@ -472,21 +472,20 @@
 
   const mynewarray = myApiData.map(function(value,index){
 
-    const indicator = value.Images.map(function(vindicator,indexindicator){
-
-      return ` <button type="button" data-bs-target="#demo${index}" data-bs-slide-to="${indexindicator}" class="active"></button>`
-    })
-
-    console.log(indicator);
-
-    const images =  value.Images.map(function(vimage,indeximage){
-
+    const indicator = value.Images.map(function(vindicator,
+      indexindicator){
+     return ` <button type="button" data-bs-target="#demo${index}" 
+      data-bs-slide-to="${indexindicator}" class="active"></button>`
+    });
+    const images =  value.Images.map(function(vimage,indeximage)
+    {
       return ` <div class="carousel-item ${indeximage == 0? "active" : ""}">
-      <img src="${vimage}" alt="Chicago" class="d-block" style="width:100%">
+  <img src="${vimage}" alt="Chicago" class="d-block"
+   style="width:100%">
     </div>`
     })
 
-    console.log(images);
+  
 
     const display = `
     <div id="demo${index}" class="carousel slide" data-bs-ride="carousel">
