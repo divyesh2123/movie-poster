@@ -33,7 +33,7 @@
           
         <div class="mb-3">
           <label for="pwd">Password:</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter password" name="pswd">
+          <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
         </div>
 
         <div class="mb-3">
@@ -56,14 +56,27 @@
         {
             e.preventDefault();
 
+            let obj = {}
 
-                let p = document.getElementsByTagName("input");
+                let p = document.querySelectorAll("input");
 
-             console.log(p);
+              p.forEach(function(a) {
+
+                if(a.type === "checkbox")
+                {
+                  obj[a.id] = a.checked;
+                }
+                else
+                {
+                obj[a.id] = a.value;
+                }
+               
+              });
           
 
             console.log(obj);
-            fetch("https://real-pear-fly-kilt.cyclic.app/accounts/register",{
+            fetch(`https://real-pear-fly-kilt.cyclic.app/accounts
+            /register`,{
                 method: "POST",
                 headers : {
                     'Content-Type': "application/json"
