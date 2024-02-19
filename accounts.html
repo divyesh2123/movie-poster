@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table>
+
+        <tbody id="display">
+
+
+        </tbody>
+    </table>
+    
+    <script>
+
+        let tok = JSON.parse(localStorage.getItem("mytoken"));
+        fetch(" https://real-pear-fly-kilt.cyclic.app/accounts",{
+            headers: {
+                'Authorization': `Bearer ${tok.jwtToken} `
+            }
+        }).then(function(v) {
+            return v.json()
+        }).then(function(v) {
+
+            display(v)
+            
+        })
+
+        function display(v)
+        {
+        let ob =    v.map(function(value) {
+
+                return (`<tr><td>${value.email}</td></tr>`)
+            });
+
+
+            document.getElementById("display").innerHTML = ob.join(" ");
+
+        }
+
+    </script>
+</body>
+</html>
