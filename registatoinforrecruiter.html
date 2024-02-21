@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form onsubmit="handleSubmit(event)">
+
+        <label>email</label>
+        <input type="text" name="email" id="email"/>
+
+        <label>password</label>
+        <input type="password" name="password" id="password" class="recruiter"/>
+
+        <label>name</label>
+        <input type="text" name="name" id="name"/>
+
+        <label>bio</label>
+        <input type="text" name="bio" id="bio"/>
+
+        <label>contactNumber</label>
+        <input type="text" name="contactNumber" id="contactNumber"/>
+
+        <button type="submit" value="save" >Save</button>
+    </form>
+
+    <script>
+
+        const handleSubmit = (e)=>{
+
+                e.preventDefault();
+
+                let obj = {};
+                document.querySelectorAll("input").forEach((element)=>{
+                    
+                  
+                    obj[element.name] = element.value;
+                });
+
+                obj.type = "recruiter"
+
+                fetch("http://192.168.1.6:4444/auth/signup",{
+                    method:"POSt",
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                   
+                    body: JSON.stringify(obj)
+                }).then(y=>{
+                    return y.json()
+                }).then(y=>{
+
+                    console.log(y);
+                })
+                console.log(obj);
+
+
+        }
+
+    </script>
+    
+</body>
+</html>

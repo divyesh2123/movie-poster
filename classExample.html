@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button name="test" id="btn" >SaveInfo</button>
+    <script>
+
+            class Display
+            {
+                name1 ="test123";
+
+             normalfuncton()
+             {
+                console.log(this.name1);
+             }
+
+             arrowfunction = ()=>{
+
+                console.log(this.name1);
+             }
+
+
+            }
+
+            let o = new Display();
+
+            document.getElementById("btn").addEventListener("click",o.arrowfunction);
+
+    </script>
+</body>
+</html>

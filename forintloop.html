@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <table id="display"></table>
+    <script>
+
+        fetch("https://jsonplaceholder.typicode.com/comments").then(function(value){
+
+            return value.json()
+        }).then(function(v) {
+            displayInfo(v);
+           
+        })
+
+        function displayInfo(v)
+        {
+        
+            let p = v.map(function(value) {
+
+                let text = '';
+
+                for (const key in value) {
+                    text += `<td>${value[key]}</td>`
+                };
+
+                return `<tr>${text}</tr>`
+
+            })
+        
+            document.getElementById("display").innerHTML = p.join(" ");
+        
+        }
+    </script>
+    
+</body>
+</html>
