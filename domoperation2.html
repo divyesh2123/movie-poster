@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="addMoreEducation()">Add More Education</button>
+
+    <div id="basicInformation">
+
+        <label>First Name</label>
+        <input type="text" name="firstName"/>
+        
+        <label>Last Level</label>
+        <input type="text" name="lastName"/>
+        
+        <label>Email</label>
+        <input type="text" name="email"/>
+ 
+    </div>
+
+
+    <div id="educations">
+    <div id="education">
+
+            <label>Education Level</label>
+            <input type="text" name="educationlevel" />
+
+            
+            <label>Education Start</label>
+            <input type="text" name="educationstart" />
+
+
+
+    </div>
+
+  
+</div>
+
+<button onclick="saveInfo()">Save All </button>
+    <script>
+
+        const addMoreEducation = ()=>{
+
+            let edu = document.getElementById("education").
+            cloneNode(true);
+
+            let p = edu.getElementsByTagName("input");
+
+            let p1= document.createElement("button");
+
+            p1.innerHTML = "Remove";
+
+            p1.onclick = (e)=>{
+
+                removeElement(e);
+            };
+
+            for (let index = 0; index < p.length; index++) {
+               p[index].value = "";
+                
+            }
+            edu.appendChild(p1);
+             
+            document.getElementById("educations").appendChild(edu);
+        }
+
+        const removeElement = (p)=>{
+
+            p.target.parentElement.remove();
+
+        }
+
+        const saveInfo= ()=>{
+
+            let op = {};
+            let p = document.querySelectorAll("#basicInformation input");
+            let p1 = document.querySelectorAll("#educations #education");
+
+            op["education"] = [];
+            p1.forEach((v,index)=>{
+
+                let elements = v.querySelectorAll("input");
+                let myjson = convertToJSon(elements);
+
+                op["education"].push(myjson);
+            })
+
+            console.log(p1);
+            op["basciInformation"] = convertToJSon(p);
+            
+            console.log(op);
+          
+            
+        }
+
+        const convertToJSon = (p)=>{
+
+            let obj={};
+
+            p.forEach((input,index)=>{
+
+
+               
+obj[input.name] = input.value;
+
+
+
+
+
+
+})
+
+    return obj;
+
+        }
+
+    </script>
+    
+</body>
+</html>
